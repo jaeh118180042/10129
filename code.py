@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 
 # 페이지 설정
@@ -107,31 +106,28 @@ with col1:
     avg_temp = filtered_df['연평균기온'].mean()
     st.metric(
         label="평균 기온",
-        value=f"{avg_temp:.2f} ℃",
-        delta=None
+        value=f"{avg_temp:.2f} ℃"
     )
 
 with col2:
     max_temp = filtered_df['연최고기온(평균)'].mean()
     st.metric(
         label="최고 기온 (연평균)",
-        value=f"{max_temp:.2f} ℃",
-        delta=None
+        value=f"{max_temp:.2f} ℃"
     )
 
 with col3:
     min_temp = filtered_df['연최저기온(평균)'].mean()
     st.metric(
         label="최저 기온 (연평균)",
-        value=f"{min_temp:.2f} ℃",
-        delta=None
+        value=f"{min_temp:.2f} ℃"
     )
 
 # 데이터 범위 정보
 st.caption(f"데이터 범위: {min_year}년 ~ {max_year}년 (총 {len(yearly_df)}개년)")
 st.caption("※ 1950년~1953년 데이터는 분석에서 제외되었습니다.")
 
-# 원시 데이터 표시 (선택 사항)
+# 원시 데이터 표시
 with st.expander("📋 연도별 상세 데이터 보기"):
     st.dataframe(
         filtered_df[['연도', '연평균기온', '5년이동평균']].style.format({
